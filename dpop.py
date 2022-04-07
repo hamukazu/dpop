@@ -50,7 +50,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--size", type=int, default=300)
     parser.add_argument("--radius", type=int, default=100)
-    parser.add_argument("--shrinking", type=bool, default=False, help="shrinking mode")
+    parser.add_argument("--shrinking", action="store_true", help="shrinking mode")
     parser.add_argument(
         "-o", "--output", type=str, default="dpop.gif", help="output file"
     )
