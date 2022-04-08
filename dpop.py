@@ -83,7 +83,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    args = parse_args
+    args = parse_args()
     run(args.size, args.radius, args.shrinking, args.output)
 
 
