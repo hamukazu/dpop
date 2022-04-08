@@ -17,7 +17,7 @@ def check_font_path(path: str) -> str:
     if os.path.isfile(path):
         return path
     else:
-        raise argparse.ArgumentError(f"Font file {repr(path)} is not found.")
+        raise argparse.ArgumentTypeError(f"Font file {repr(path)} is not found.")
 
 
 def get_os_font() -> str:
@@ -37,7 +37,8 @@ def get_os_font() -> str:
     # if platform.startswith('win32'):
     #     return check_font_path("C:\Windows\Fonts\Seguiemj.ttf")
     else:
-        raise argparse.ArgumentError(f"Unsupported platform: {repr(platform)}")
+        print(f"Unsupported platform: {repr(platform)}", file=sys.stderr)
+        exit(1)
 
 
 def run(size: int, radius: int, shrinking: bool, outfile: str, fontfile: str) -> None:
@@ -83,7 +84,7 @@ def parse_args() -> argparse.Namespace:
                 prog,
                 **{
                     "width": shutil.get_terminal_size(fallback=(120, 50)).columns,
-                    "max_help_position": 25,
+                    "max_help_position": 50,
                 },
             )
         ),
