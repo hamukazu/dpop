@@ -1,5 +1,7 @@
 import argparse
 import math
+import os
+import shutil
 import sys
 
 from PIL import Image, ImageDraw, ImageFont
@@ -11,16 +13,37 @@ class DpopFormatter(
     pass
 
 
-def run(size: int, radius: int, shrinking: bool, outfile: str) -> None:
+def check_font_path(path: str) -> str:
+    if os.path.isfile(path):
+        return path
+    else:
+        raise argparse.ArgumentError(f"Font file {repr(path)} is not found.")
+
+
+def get_os_font() -> str:
+    platform = sys.platform
+    # if platform.startswith("aix"):
+    #     return ""
+    # if platform.startswith("cygwin"):
+    #     return ""
+    if platform.startswith("darwin"):
+        return check_font_path("/System/Library/Fonts/Apple Color Emoji.ttc")
+    # if platform.startswith("freebsd"):
+    #     return ""
+    elif platform.startswith("linux"):
+        return check_font_path(
+            "/usr/share/fonts/truetype/ancient-scripts/Symbola_hint.ttf"
+        )
+    # if platform.startswith('win32'):
+    #     return check_font_path("C:\Windows\Fonts\Seguiemj.ttf")
+    else:
+        raise argparse.ArgumentError(f"Unsupported platform: {repr(platform)}")
+
+
+def run(size: int, radius: int, shrinking: bool, outfile: str, fontfile: str) -> None:
     images = []
     fontsize = 40
-    if sys.platform == "darwin":
-        font = ImageFont.truetype(
-            "/System/Library/Fonts/Apple Color Emoji.ttc", fontsize
-        )
-    else:
-        print("Unsupported platform")
-        sys.exit(1)
+    font = ImageFont.truetype(fontfile, fontsize)
 
     for i in range(72):
         im = Image.new("RGB", (size, size))
@@ -59,7 +82,7 @@ def parse_args() -> argparse.Namespace:
             lambda prog: DpopFormatter(
                 prog,
                 **{
-                    "width": get_terminal_size(fallback=(120, 50)).columns,
+                    "width": shutil.get_terminal_size(fallback=(120, 50)).columns,
                     "max_help_position": 25,
                 },
             )
@@ -79,12 +102,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-o", "--output", type=str, default="dpop.gif", help="output file"
     )
+    parser.add_argument(
+        "--font", type=check_font_path, default=get_os_font(), help="font file"
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    run(args.size, args.radius, args.shrinking, args.output)
+    run(args.size, args.radius, args.shrinking, args.output, args.font)
 
 
 if __name__ == "__main__":
