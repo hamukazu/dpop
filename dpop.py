@@ -1,11 +1,17 @@
-from PIL import Image, ImageDraw, ImageFont
+import argparse
 import math
 import sys
-import argparse
+
+from PIL import Image, ImageDraw, ImageFont
 
 
-def run(size, radius, shrinking, outfile):
+class DpopFormatter(
+    argparse.ArgumentDefaultsHelpFormatter, argparse.RawDescriptionHelpFormatter
+):
+    pass
 
+
+def run(size: int, radius: int, shrinking: bool, outfile: str) -> None:
     images = []
     fontsize = 40
     if sys.platform == "darwin":
@@ -46,15 +52,38 @@ def run(size, radius, shrinking, outfile):
     )
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--size", type=int, default=300)
-    parser.add_argument("--radius", type=int, default=100)
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        prog="dpop",
+        formatter_class=(
+            lambda prog: DpopFormatter(
+                prog,
+                **{
+                    "width": get_terminal_size(fallback=(120, 50)).columns,
+                    "max_help_position": 25,
+                },
+            )
+        ),
+        description="Dancing Pile-Of-Poo Gif Generator",
+    )
+    parser.add_argument(
+        "--size", type=int, default=300, help="generated image size (<size>x<size>)"
+    )
+    parser.add_argument(
+        "--radius",
+        type=int,
+        default=100,
+        help="radius of the wheel around which poops spin",
+    )
     parser.add_argument("--shrinking", action="store_true", help="shrinking mode")
     parser.add_argument(
         "-o", "--output", type=str, default="dpop.gif", help="output file"
     )
-    args = parser.parse_args(sys.argv[1:])
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args
     run(args.size, args.radius, args.shrinking, args.output)
 
 
