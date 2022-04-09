@@ -1,4 +1,5 @@
 # dpop
+
 踊るうんこのgif画像を生成します。
 
 dpop stands for Dancing Pile of Poo.
@@ -12,18 +13,20 @@ dpop stands for Dancing Pile of Poo.
 
 Python3がインストールされていることを前提とします。
 
-まず、以下のコマンドを実行して必要なパッケージをインストールします。
+まず、以下のコマンドを実行してコマンドをインストールします。
+
 ```
-> pip install -r requirements.tzt
+> pip install git+https://github.com/hamukazu/dpop.git
 ```
 
 以下を実行するとファイルdpop.gifが生成されます。
+
 ```
-> python dpop.py
+> dpop
 ```
 
 オプションの指定ができますが、オプションの詳細は以下を実行してください。
 ```
-> python dpop.py --help
+> dpop --help
 ```
 
