@@ -21,7 +21,7 @@ This works on Python3.
 To install, enter the command as follows:
 
 ```shellsession
-> pip install git+https://github.com/hamukazu/dpop.git
+> pip install dpop
 ```
 
 Enter as follows to generate a gif file:

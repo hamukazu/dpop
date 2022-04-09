@@ -20,7 +20,7 @@ Python3がインストールされていることを前提とします。
 まず、以下のコマンドを実行してコマンドをインストールします。
 
 ```shellsession
-> pip install git+https://github.com/hamukazu/dpop.git
+> pip install dpop
 ```
 
 以下を実行するとファイルdpop.gifが生成されます。
