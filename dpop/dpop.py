@@ -3,8 +3,11 @@ import math
 import os
 import shutil
 import sys
+from typing import Optional
 
 from PIL import Image, ImageDraw, ImageFont
+
+from dpop import __version__
 
 
 class DpopFormatter(
@@ -105,6 +108,9 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--font", type=check_font_path, default=get_os_font(), help="font file"
+    )
+    parser.add_argument(
+        "-V", "--version", action="version", version=f"%(prog)s {__version__}"
     )
     return parser.parse_args()
 
