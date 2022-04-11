@@ -36,8 +36,8 @@ def get_os_font() -> str:
         return check_font_path(
             "/usr/share/fonts/truetype/ancient-scripts/Symbola_hint.ttf"
         )
-    # if platform.startswith('win32'):
-    #     return check_font_path("C:\Windows\Fonts\Seguiemj.ttf")
+    elif platform.startswith('win32'):
+        return check_font_path("C:\Windows\Fonts\Seguiemj.ttf")
     else:
         print(f"Unsupported platform: {repr(platform)}", file=sys.stderr)
         exit(1)
