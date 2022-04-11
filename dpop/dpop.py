@@ -3,7 +3,6 @@ import math
 import os
 import shutil
 import sys
-from typing import Optional
 
 from PIL import Image, ImageDraw, ImageFont
 
