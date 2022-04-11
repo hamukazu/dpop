@@ -46,7 +46,7 @@ jobs:
         run: |
           mypy dpop
       - name: Install font
-        if: ${{ matrix.os }} == "ubuntu-latest"
+        if:  runner.os == 'Linux'
         run: |
           sudo apt install ttf-ancient-fonts-symbola -y
       - name: Run
