@@ -15,6 +15,7 @@ This work in the following platforms. The only platform dependent part is the sp
 - Linux
   - Needs `/usr/share/fonts/truetype/ancient-scripts/Symbola_hint.ttf`
   - Install the font beforehand
+- Windows
 
 This works on Python3.
 
