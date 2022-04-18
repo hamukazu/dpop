@@ -14,6 +14,7 @@
 - Linux
   - フォント`/usr/share/fonts/truetype/ancient-scripts/Symbola_hint.ttf`があることが前提です
   - フォントのインストールは[こちら](https://qiita.com/polamjag/items/7295a15fca6a9eeb5d84#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95)を参照してください。
+- Windows
 
 Python3がインストールされていることを前提とします。
 
