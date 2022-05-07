@@ -5,7 +5,7 @@ dpop stands for Dancing Piles of Poo. This program saves a gif image which shows
 
 Sample of output:
 
-![dancing pile of poo](dpop.gif)
+![dancing pile of poo](https://github.com/hamukazu/dpop/blob/main/dpop.gif)
 
 ## How to Use
 
